@@ -1,4 +1,5 @@
 ﻿using General.GUI;
+using General.GUI.GUIGestiones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,6 +87,31 @@ namespace Principal
             EmpleadosGestion Empleado = new EmpleadosGestion();
             OpenFroms(Empleado);
 
+        }
+
+        private void Pacientes_Click(object sender, EventArgs e)
+        {
+            PacientesGestion pacientes= new PacientesGestion();
+            OpenFroms(pacientes);
+
+        }
+
+        private void Citas_Click(object sender, EventArgs e)
+        {
+            CitasGestion citasGestion = new CitasGestion();
+            OpenFroms(citasGestion);
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            UsuariosGestion usuario = new UsuariosGestion();
+            OpenFroms(usuario);
+        }
+
+        private void Medicamento_Click(object sender, EventArgs e)
+        {
+            MedicamentoGestion medicamento = new MedicamentoGestion();
+            OpenFroms(medicamento);
         }
     }
 }

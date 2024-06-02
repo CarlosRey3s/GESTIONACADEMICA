@@ -42,3 +42,14 @@ C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General
 C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.EmpleadosEdicion.resources
 C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.EmpleadosGestion.resources
 C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.VistaPrevia.VistaPreviaEmpleado.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIEdicion.PacientesEdicion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.PacientesGestion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.CitasGestion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIEdicion.CitasEdicion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIEdicion.UsuariosEdicion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.UsuariosGestion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIEdicion.RolesEdicion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.RolesGestion.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.AsignarOpcionARol.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.VerPermisos.resources
+C:\Users\ccerr\Documents\VISUAL ESTUDIO\Clinica_Medica\General\obj\Debug\General.GUI.GUIGestiones.MedicamentoGestion.resources

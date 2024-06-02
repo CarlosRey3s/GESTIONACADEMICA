@@ -45,12 +45,14 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dtbDoctor = new System.Windows.Forms.DataGridView();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Doctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombresEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidosEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumeroLIcencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TelefonoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroLIcencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Correo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -107,7 +109,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(1, 90);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1059, 48);
+            this.toolStrip1.Size = new System.Drawing.Size(1172, 48);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -118,6 +120,7 @@
             this.Insertar.Name = "Insertar";
             this.Insertar.Size = new System.Drawing.Size(82, 45);
             this.Insertar.Text = "Insertar";
+            this.Insertar.Click += new System.EventHandler(this.Insertar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -131,6 +134,7 @@
             this.Modificar.Name = "Modificar";
             this.Modificar.Size = new System.Drawing.Size(97, 45);
             this.Modificar.Text = "Modificar";
+            this.Modificar.Click += new System.EventHandler(this.Modificar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -145,6 +149,7 @@
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.Size = new System.Drawing.Size(87, 45);
             this.Eliminar.Text = "Eliminar";
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click);
             // 
             // toolStripTextBox1
             // 
@@ -169,7 +174,7 @@
             this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1069, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1182, 26);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -187,6 +192,8 @@
             // 
             // dtbDoctor
             // 
+            this.dtbDoctor.AllowUserToAddRows = false;
+            this.dtbDoctor.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Format = "N2";
             dataGridViewCellStyle1.NullValue = null;
             this.dtbDoctor.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -197,27 +204,40 @@
             this.dtbDoctor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtbDoctor.ColumnHeadersHeight = 29;
             this.dtbDoctor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre,
+            this.ID_Doctor,
+            this.ID_Empleado,
             this.NombresEmpleado,
             this.ApellidosEmpleado,
-            this.NumeroLIcencia,
             this.TelefonoEmpleado,
-            this.Especialidad});
+            this.NumeroLIcencia,
+            this.Especialidad,
+            this.Correo});
             this.dtbDoctor.Location = new System.Drawing.Point(1, 141);
             this.dtbDoctor.MultiSelect = false;
             this.dtbDoctor.Name = "dtbDoctor";
+            this.dtbDoctor.ReadOnly = true;
             this.dtbDoctor.RowHeadersWidth = 51;
             this.dtbDoctor.RowTemplate.Height = 24;
-            this.dtbDoctor.Size = new System.Drawing.Size(1066, 432);
+            this.dtbDoctor.Size = new System.Drawing.Size(1179, 432);
             this.dtbDoctor.TabIndex = 5;
             // 
-            // Nombre
+            // ID_Doctor
             // 
-            this.Nombre.DataPropertyName = "ID_Doctor";
-            this.Nombre.HeaderText = "ID_Doctor";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 125;
+            this.ID_Doctor.DataPropertyName = "ID_Doctor";
+            this.ID_Doctor.HeaderText = "ID_Doctor";
+            this.ID_Doctor.MinimumWidth = 6;
+            this.ID_Doctor.Name = "ID_Doctor";
+            this.ID_Doctor.ReadOnly = true;
+            this.ID_Doctor.Width = 125;
+            // 
+            // ID_Empleado
+            // 
+            this.ID_Empleado.DataPropertyName = "ID_Empleado";
+            this.ID_Empleado.HeaderText = "ID_Empleado";
+            this.ID_Empleado.MinimumWidth = 6;
+            this.ID_Empleado.Name = "ID_Empleado";
+            this.ID_Empleado.ReadOnly = true;
+            this.ID_Empleado.Width = 125;
             // 
             // NombresEmpleado
             // 
@@ -225,6 +245,7 @@
             this.NombresEmpleado.HeaderText = "Nombre";
             this.NombresEmpleado.MinimumWidth = 6;
             this.NombresEmpleado.Name = "NombresEmpleado";
+            this.NombresEmpleado.ReadOnly = true;
             this.NombresEmpleado.Width = 200;
             // 
             // ApellidosEmpleado
@@ -233,15 +254,8 @@
             this.ApellidosEmpleado.HeaderText = "Apellido";
             this.ApellidosEmpleado.MinimumWidth = 6;
             this.ApellidosEmpleado.Name = "ApellidosEmpleado";
+            this.ApellidosEmpleado.ReadOnly = true;
             this.ApellidosEmpleado.Width = 200;
-            // 
-            // NumeroLIcencia
-            // 
-            this.NumeroLIcencia.DataPropertyName = "NumeroLIcencia";
-            this.NumeroLIcencia.HeaderText = "NumeroLIcencia";
-            this.NumeroLIcencia.MinimumWidth = 6;
-            this.NumeroLIcencia.Name = "NumeroLIcencia";
-            this.NumeroLIcencia.Width = 200;
             // 
             // TelefonoEmpleado
             // 
@@ -249,7 +263,17 @@
             this.TelefonoEmpleado.HeaderText = "Telefono";
             this.TelefonoEmpleado.MinimumWidth = 6;
             this.TelefonoEmpleado.Name = "TelefonoEmpleado";
+            this.TelefonoEmpleado.ReadOnly = true;
             this.TelefonoEmpleado.Width = 200;
+            // 
+            // NumeroLIcencia
+            // 
+            this.NumeroLIcencia.DataPropertyName = "NumeroLIcencia";
+            this.NumeroLIcencia.HeaderText = "NumeroLIcencia";
+            this.NumeroLIcencia.MinimumWidth = 6;
+            this.NumeroLIcencia.Name = "NumeroLIcencia";
+            this.NumeroLIcencia.ReadOnly = true;
+            this.NumeroLIcencia.Width = 200;
             // 
             // Especialidad
             // 
@@ -257,13 +281,23 @@
             this.Especialidad.HeaderText = "Especialidad";
             this.Especialidad.MinimumWidth = 6;
             this.Especialidad.Name = "Especialidad";
+            this.Especialidad.ReadOnly = true;
             this.Especialidad.Width = 200;
+            // 
+            // Correo
+            // 
+            this.Correo.DataPropertyName = "Correo";
+            this.Correo.HeaderText = "Correo";
+            this.Correo.MinimumWidth = 6;
+            this.Correo.Name = "Correo";
+            this.Correo.ReadOnly = true;
+            this.Correo.Width = 125;
             // 
             // DoctoresGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 615);
+            this.ClientSize = new System.Drawing.Size(1182, 615);
             this.Controls.Add(this.dtbDoctor);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -300,11 +334,13 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.DataGridView dtbDoctor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_Doctor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_Empleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombresEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn ApellidosEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroLIcencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn TelefonoEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroLIcencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Especialidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Correo;
     }
 }

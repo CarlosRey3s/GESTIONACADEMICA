@@ -20,7 +20,6 @@ namespace General.CLS
         string Correo;
         Int32 ID_Cargo;
         string Cargo;
-
         Int32 ID_Direccion;
 
         public int ID_empleados { get => ID_empleado; set => ID_empleado = value; }
@@ -33,6 +32,7 @@ namespace General.CLS
         public string Correos { get => Correo; set => Correo = value; }
         public int ID_Cargos { get => ID_Cargo; set => ID_Cargo = value; }
         public string Cargos { get => Cargo; set => Cargo = value; }
+      
         public int ID_Direcciones { get => ID_Direccion; set => ID_Direccion = value; }
 
         public Boolean Insertar()
@@ -43,9 +43,8 @@ namespace General.CLS
 
             StringBuilder Sentencia = new StringBuilder();
 
-
             Sentencia.Append("INSERT INTO `clinica_medica`.`empleados` (`DUI_Empleado`, `ISSS_Empleado`, `NombresEmpleado`, `ApellidosEmpleado`, `FechaNacEmpleado`, `TelefonoEmpleado`, `Correo`, `ID_Cargo`, `ID_Direccion`) VALUES (");
-            Sentencia.Append("'" + DUI_Empleados + "', '" + ISSS_Empleados + "', '" + NombresEmpleado + "', '" + ApellidosEmpleado + "', '" + FechaNacEmpleado.ToString("yyyy-MM-dd") + "', '" + TelefonoEmpleado + "', '" + Correo + "', '" + ID_Cargo + "', '" + ID_Direccion + "');");
+            Sentencia.Append("'" + DUI_Empleados + "', '" + ISSS_Empleados + "', '" + NombresEmpleado + "', '" + ApellidosEmpleado + "', '" + FechaNacEmpleado.ToString("yyyy-MM-dd") + "', '" + TelefonoEmpleado + "', '" + Correo + "', '" + ID_Cargo + "', '" + ID_Direcciones + "');");
 
             try
             {
@@ -71,7 +70,7 @@ namespace General.CLS
 
             StringBuilder Sentencia = new StringBuilder();
 
-            Sentencia.Append(" UPDATE empleados SET ");
+            Sentencia.Append("UPDATE empleados SET ");
             Sentencia.Append("`DUI_Empleado` = '" + DUI_Empleados + "', ");
             Sentencia.Append("`ISSS_Empleado` = '" + ISSS_Empleados + "', ");
             Sentencia.Append("`NombresEmpleado` = '" + NombresEmpleado + "', ");
@@ -79,10 +78,10 @@ namespace General.CLS
             Sentencia.Append("`FechaNacEmpleado` = '" + FechaNacEmpleado.ToString("yyyy-MM-dd") + "', ");
             Sentencia.Append("`TelefonoEmpleado` = '" + TelefonoEmpleado + "', ");
             Sentencia.Append("`Correo` = '" + Correo + "', ");
-            Sentencia.Append("`ID_Cargo` = '" + ID_Cargo + "', ");
-            Sentencia.Append("`ID_Direccion` = '" + ID_Direccion + "' ");
+            Sentencia.Append("`ID_Cargo` = '" + ID_Cargo + "' ");
             Sentencia.Append("WHERE `ID_Empleado` = '" + ID_empleado + "';");
 
+            // Sentencia.Append("`ID_Direccion` = '" + ID_Direcciones + "' ");
             try
             {
                 if (operaciones.EjecutarSentencia(Sentencia.ToString()) >= 0)

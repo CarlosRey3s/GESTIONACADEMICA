@@ -15,6 +15,35 @@ namespace General.GUI
     public partial class EmpleadosGestion : Form
     {
         BindingSource _Datos = new BindingSource();
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                // Obtener el texto ingresado en el cuadro de texto de filtro
+                string filtro = txtFiltro.Text.Trim();
+
+                // Filtrar los datos en función del texto ingresado
+                if (filtro.Length <= 0)
+                {
+                    _Datos.RemoveFilter();
+                }
+                else
+                {
+                    // Construir la expresión de filtro para filtrar por nombre de usuario
+                    string filtroExpresion = $"NombresEmpleado LIKE '%{filtro}%'";
+
+                    // Aplicar el filtro
+                    _Datos.Filter = filtroExpresion;
+                }
+                dtbEmpleado.AutoGenerateColumns = false;
+                dtbEmpleado.DataSource = _Datos;
+            }
+            catch (Exception ex)
+            {
+                // Manejo básico de excepciones
+                MessageBox.Show("Ocurrió un error al filtrar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void Cargar()
         {
             try
@@ -22,8 +51,8 @@ namespace General.GUI
                 _Datos.DataSource = DataLayer.Consulta.Empleados();
                 dtbEmpleado.DataSource = _Datos;
                 dtbEmpleado.AutoGenerateColumns = false;
-              
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -52,6 +81,8 @@ namespace General.GUI
         private void EmpleadosGestion_Load(object sender, EventArgs e)
         {
             Cargar();
+            FiltrarLocalmente();
+            ContarEmpleados();
         }
 
         private void Modificar_Click(object sender, EventArgs e)
@@ -61,7 +92,14 @@ namespace General.GUI
                 if (MessageBox.Show("Desea modificar esta Cuenta?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     EmpleadosEdicion f = new EmpleadosEdicion();
+                    CLS.Empleados oEmpleados = new CLS.Empleados();
                     
+                    CLS.Direccion oDireccion = new CLS.Direccion();
+
+                   
+
+                   
+
                     f.txtIDEmpleado.Text = dtbEmpleado.CurrentRow.Cells["ID_empleado"].Value.ToString();
                     f.txtDUI.Text = dtbEmpleado.CurrentRow.Cells["DUI_Empleado"].Value.ToString();
                     f.txtISSS.Text = dtbEmpleado.CurrentRow.Cells["ISSS_Empleado"].Value.ToString();
@@ -70,8 +108,13 @@ namespace General.GUI
                     f.dTFechaNac.Text = dtbEmpleado.CurrentRow.Cells["FechaNacEmpleado"].Value.ToString();
                     f.txtTelefono.Text = dtbEmpleado.CurrentRow.Cells["TelefonoEmpleado"].Value.ToString();
                     f.txtCorreo.Text = dtbEmpleado.CurrentRow.Cells["Correo"].Value.ToString();
-                   // f.txtCargo.Text = dtbEmpleado.CurrentRow.Cells["ID_Cargo"].Value.ToString();
-                    f.txtDireccion.Text = dtbEmpleado.CurrentRow.Cells["ID_Direccion"].Value.ToString();
+
+                    f.cbxCargo.Text = dtbEmpleado.CurrentRow.Cells["Cargo"].Value.ToString();
+
+                    f.txtDireccion.Text = dtbEmpleado.CurrentRow.Cells["Linea1"].Value.ToString();
+                    f.txtDireccion1.Text = dtbEmpleado.CurrentRow.Cells["Linea2"].Value.ToString();
+                    f.txtID_Direccion.Text = dtbEmpleado.CurrentRow.Cells["ID_Direccion"].Value.ToString();
+
 
                     f.ShowDialog();
                     Cargar();
@@ -133,6 +176,23 @@ namespace General.GUI
             }
             f.ShowDialog();
             
+        }
+
+        private void txtFiltro_Click(object sender, EventArgs e)
+        {
+            FiltrarLocalmente();
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+
+          
+
+        }
+        private void ContarEmpleados()
+        {
+            int totalEmpleados = dtbEmpleado.RowCount;
+            TotalEmpleados.Text = totalEmpleados.ToString();
         }
     }
 }

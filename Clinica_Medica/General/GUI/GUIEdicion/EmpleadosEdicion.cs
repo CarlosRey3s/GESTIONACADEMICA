@@ -14,23 +14,25 @@ namespace General.GUI
 {
     public partial class EmpleadosEdicion : Form
     {
-        BindingSource _Datos = new BindingSource();
 
-        private void LlenarComboBoxCargos()
+       
+        BindingSource _Datos = new BindingSource();
+       
+
+        private void LlenarComboBoxCargos() //el metodo se ejcutara para llenar el combobox Cargo
         {
-                try
-                {
+            try
+            {
                 _Datos.DataSource = DataLayer.Consulta.Cargos();
                 cbxCargo.DataSource = _Datos;
-                cbxCargo.DisplayMember = "Cargo";
-                cbxCargo.ValueMember = "ID_Cargo";
-                }
-                catch (Exception ex)
-                {
-
-                }
-               
+                cbxCargo.DisplayMember = "Cargo"; //Mostrara los cargos de la tabla cargo 
+                cbxCargo.ValueMember = "ID_Cargo"; // recojera el id del cargo seleccionado
+            }
+            catch (Exception ex)
+            {}
         }
+        
+
 
         private Boolean Validar()
         {
@@ -39,6 +41,7 @@ namespace General.GUI
             {
                 if (txtNombreEmpleado.Text.Trim().Length == 0)
                 {
+                    //valida que los campos no queden vacios
                     notificador.SetError(txtNombreEmpleado, "Este campo no puede quedar vacio");
                     Valido = false;
                 }
@@ -53,11 +56,6 @@ namespace General.GUI
         {
             InitializeComponent();
            
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -78,40 +76,57 @@ namespace General.GUI
                 if (Validar())
                 {
                     //Crear una instancia a partir de la clase
-
                     CLS.Empleados oEmpleados = new CLS.Empleados();
 
                     //sincronizar el objeto con la interfaz
-
-                    try {
+                    try
+                    {
                         oEmpleados.ID_empleados = Convert.ToInt32(txtIDEmpleado.Text);
-
                     }
                     catch (Exception)
                     {
                         oEmpleados.ID_empleados = 0;
                     }
-                    oEmpleados.NombresEmpleados = txtNombreEmpleado.Text;
-                    oEmpleados.ApellidosEmpleados = txtApellidoEmpleado.Text;
-                    oEmpleados.FechaNacEmpleados = dTFechaNac.Value;
-                    oEmpleados.TelefonoEmpleados = txtTelefono.Text;
-                    oEmpleados.Correos = txtCorreo.Text;
-                    oEmpleados.DUI_Empleados = txtDUI.Text;
-                    oEmpleados.ISSS_Empleados = Convert.ToInt32(txtISSS.Text);
+                    //asinga los datos que estan en las cajas de texto a la variable de la clase empleados creda
 
-                    oEmpleados.Cargos = cbxCargo.Text;
-                    int selectedCargoId = (int)cbxCargo.SelectedValue;
-                    oEmpleados.ID_Cargos = selectedCargoId;
-
-                    oEmpleados.ID_Direcciones = Convert.ToInt32(txtDireccion.Text);
-
+                        CLS.Direccion oDireccion = new CLS.Direccion(); 
+                    
+                        oEmpleados.NombresEmpleados = txtNombreEmpleado.Text;
+                        oEmpleados.ApellidosEmpleados = txtApellidoEmpleado.Text;
+                        oEmpleados.FechaNacEmpleados = dTFechaNac.Value;
+                        oEmpleados.TelefonoEmpleados = txtTelefono.Text;
+                        oEmpleados.Correos = txtCorreo.Text;
+                        oEmpleados.DUI_Empleados = txtDUI.Text;
+                        oEmpleados.ISSS_Empleados = Convert.ToInt32(txtISSS.Text);
+                        oEmpleados.Cargos = cbxCargo.Text;
+                        int selectedCargoId = (int)cbxCargo.SelectedValue;
+                        oEmpleados.ID_Cargos = selectedCargoId;
+                        oDireccion.Linea11 = txtDireccion.Text;
+                        oDireccion.Linea21 = txtDireccion1.Text;
+                      
+                        
+                   // oDireccion.ID_Direccion1 = oEmpleados.ID_Direcciones;
+                    //verifica si el textemleado es igual a cero
+                    //si es 0 entrara en el if para registras caso contrario pasara al else para actuaizar los datos
                     if (txtIDEmpleado.Text.Trim().Length == 0)
                     {
                         //GUARDAR NUEVO REGISTROS
-                        if (oEmpleados.Insertar())
+                        if (oDireccion.Insertar())
                         {
+
+                            oEmpleados.ID_Direcciones = oDireccion.ID_Direccion1;
                             MessageBox.Show("Registro Guardado");
-                            Close();
+                           
+                            if (oEmpleados.Insertar()) // llama al metodo insertar empleado
+                            {
+                                Close();
+                                MessageBox.Show("Registro Guardado");
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("El registro no pude ser almacenado");
+                            }                         
                         }
                         else
                         {
@@ -119,11 +134,24 @@ namespace General.GUI
                         }
                     }
                     else
-                    {
-                        //ACTUALIZAR REGISTRO
+                    { //ACTUALIZAR REGISTRO
                         if (oEmpleados.Actualizar())
                         {
+                            oDireccion.ID_Direccion1 = Convert.ToInt32(txtID_Direccion.Text);
                             MessageBox.Show("Registro Actualizado");
+
+                            if (oDireccion.Actualizar())
+                            {
+                               // oDireccion.ID_Direccion1 = oEmpleados.ID_Direcciones;
+                                MessageBox.Show("Registro Actualizado");
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("El registro no pude ser actualizado");
+
+                            }
+                            //MessageBox.Show("Registro Actualizado");
                             Close();
                         }
                         else
@@ -138,7 +166,6 @@ namespace General.GUI
 
         private void cbCargo_SelectedIndexChanged(object sender, EventArgs e)
         { 
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
